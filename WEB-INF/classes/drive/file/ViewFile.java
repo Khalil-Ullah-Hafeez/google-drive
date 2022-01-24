@@ -6,6 +6,8 @@ import jakarta.servlet.http.*;
 
 import com.google.gson.*;
 
+import drive.Beans.UserBean;
+
 public class ViewFile extends HttpServlet {
     /** 
      * Process the viewFile GET request
@@ -32,12 +34,13 @@ public class ViewFile extends HttpServlet {
             return;
         }
 
-        String email = (String) session.getAttribute( "email" );
+        String email = ( (UserBean) session.getAttribute( "user" ) ).getEmail();
         String path = getServletContext().getRealPath("/data/" + email + "/");
 
         // check if there are any files, if not then return error
-        if ( !(new File( path )).exists() ) {
-            res.setStatus( 401 );
+        File file = new File( path );
+        if ( !file.exists() || (file.list().length == 0) ) {
+            res.setStatus( 404 );
             out.print( "Files do not exist" );
             out.close();
             return;

@@ -1,4 +1,4 @@
-package drive.authentication;
+package drive.credientials;
 
 import java.io.*;
 import jakarta.servlet.*;
@@ -10,8 +10,7 @@ import drive.Beans.UserBean;
 import drive.database.UserDAO;
 
 @MultipartConfig
-public class Signup extends HttpServlet {
-    
+public class UpdateData extends HttpServlet {
     /** 
      * Process the signup POST request, redirect to login upon success and show error in case of failure
      * @param req
@@ -48,7 +47,7 @@ public class Signup extends HttpServlet {
 
 
         // insert data in the database
-        String result = UserDAO.insertUser( user );
+        String result = UserDAO.updateUser( user );
         if ( result.length() != 0 ) {
             res.setStatus( 401 );
             out.println( result );
@@ -56,6 +55,10 @@ public class Signup extends HttpServlet {
             return;
         }
 
+        HttpSession session = req.getSession( false );
+        if ( session != null ) {
+            session.invalidate();
+        }
         
         // redirect to login page
         out.print( "login.jsp" );

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
+
+	<servlet>		
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>drive.controller.Controller</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Controller</servlet-name>
+		<url-pattern>/Controller</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>		
 		<servlet-name>Login</servlet-name>
@@ -19,6 +29,26 @@
 	<servlet-mapping>
 		<servlet-name>Signup</servlet-name>
 		<url-pattern>/Signup</url-pattern>
+	</servlet-mapping>
+
+	<servlet>		
+		<servlet-name>UpdateData</servlet-name>
+		<servlet-class>drive.credientials.UpdateData</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>UpdateData</servlet-name>
+		<url-pattern>/UpdateData</url-pattern>
+	</servlet-mapping>
+
+	<servlet>		
+		<servlet-name>DeleteAccount</servlet-name>
+		<servlet-class>drive.credientials.DeleteAccount</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DeleteAccount</servlet-name>
+		<url-pattern>/DeleteAccount</url-pattern>
 	</servlet-mapping>
 
 	<servlet>		
@@ -60,6 +90,27 @@
 		<servlet-name>DownloadFile</servlet-name>
 		<url-pattern>/DownloadFile</url-pattern>
 	</servlet-mapping>
+
+	<servlet>		
+		<servlet-name>DeleteFile</servlet-name>
+		<servlet-class>drive.file.DeleteFile</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DeleteFile</servlet-name>
+		<url-pattern>/DeleteFile</url-pattern>
+	</servlet-mapping>
+
+	<servlet>		
+		<servlet-name>Verification</servlet-name>
+		<servlet-class>drive.verification.VerificationDriver</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Verification</servlet-name>
+		<url-pattern>/Verification</url-pattern>
+	</servlet-mapping>
+
 
 	<context-param>  
 		<param-name>DBURL</param-name>  

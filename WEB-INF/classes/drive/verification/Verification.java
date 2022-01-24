@@ -33,7 +33,7 @@ public class Verification {
         );
     }
 
-    public static boolean sendMail( String email ) {
+    public static boolean sendMail( String email, int code ) {
 
         try
         {
@@ -42,7 +42,7 @@ public class Verification {
             message.setFrom( new InternetAddress( username ) );
             message.setRecipient( Message.RecipientType.TO, InternetAddress.parse( email )[0] );
             message.setSubject( "Email Verification - Google Drive Clone" );
-            message.setText( "Hello from Google Drive" );
+            message.setText( "Hello from Google Drive.\nClick the link below to verify your email.\nhttp://localhost:8080/google-drive/Controller?action=Verification&code=" + code );
 
             // send email
             Transport.send( message );

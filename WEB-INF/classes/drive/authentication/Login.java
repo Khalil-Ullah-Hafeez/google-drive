@@ -3,6 +3,8 @@ package drive.authentication;
 import java.io.*;
 import java.util.ArrayList;
 
+import drive.Beans.UserBean;
+import drive.database.UserDAO;
 import drive.verification.VerificationDriver;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -27,11 +29,11 @@ public class Login extends HttpServlet {
         PrintWriter out = res.getWriter();
 
         // get data from request body
-        LoginUser user = new LoginUser( req.getParameter("email"), req.getParameter("password") );
+        UserBean user = new UserBean( req.getParameter("email"), req.getParameter("password") );
 
         // validate data
         // if data is not valid, then set status to 401 and send an error array to client
-        ArrayList<String> validate_list = user.validate();
+        ArrayList<String> validate_list = user.validateLogin();
         if ( validate_list.size() != 0 ) {
             res.setStatus( 400 );
             out.println( validate_list );
@@ -40,7 +42,7 @@ public class Login extends HttpServlet {
         }
 
         // verify data from database
-        String result = user.checkFromDB();
+        String result = UserDAO.loginCheck( user );
         if ( result.length() != 0 ) {
             res.setStatus( 401 );
             out.println( result );
@@ -50,12 +52,14 @@ public class Login extends HttpServlet {
 
         // (new VerificationDriver("khalil.formal@gmail.com")).sendVerificationMail();
 
+        user = UserDAO.getUser( req.getParameter("email") );
+
         // create session
         HttpSession session = req.getSession( true );
-        session.setAttribute( "email" ,  user.getEmail() );
+        session.setAttribute( "user" ,  user );        
 
         // redirect to home
-        res.sendRedirect( "home.jsp" );
+        res.sendRedirect( "index.jsp" );
 
         // close PrintWriter
         out.close();

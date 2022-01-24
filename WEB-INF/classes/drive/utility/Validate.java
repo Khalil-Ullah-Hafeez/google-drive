@@ -12,28 +12,32 @@ public class Validate
      * @param email
      * @return boolean
      */
-    public static boolean isValidEmail(String email)
+    public static String isValidEmail(String email)
     {
-        return EmailValidator.getInstance().isValid(email);
+        if ( email == null || email.isEmpty() )
+            return "email can't be empty";
+
+        if ( !EmailValidator.getInstance().isValid(email) )
+            return "email is not valid";
+
+        return "";
     }
 
-    
     /** 
      * Check whether a password is valid or not
      * @param password
      * @return boolean
      */
-    public static boolean isValidPassword(String password)
+    public static String isValidPassword(String password)
     {
-        boolean result = true;
+        if ( password == null || password.isEmpty() )
+            return "password can't be empty";
 
-        if ( password.length() < 1 )
-            result=false;
+        if ( password.length() < 8 )
+            return "password can't have less than 8 characters";
 
-        return result;
-
+        return "";
     }
-
     
     /** 
      * Check whether two passwords match
@@ -57,10 +61,10 @@ public class Validate
      */
     public static boolean isValidString(String data)
     {
-        if ( !data.equals( "" ) )
-            return true;
-        else
+        if ( data == null || data.isEmpty() )
             return false;
+        else
+            return true;
     }
 
 }

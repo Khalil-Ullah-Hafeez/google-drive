@@ -4,7 +4,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class DataSource {
     private static BasicDataSource dataSource;
-    private static final String DRIVERCLASS = "com.mysql.jdbc.Driver";
+    private static final String DRIVERCLASS = "com.mysql.cj.jdbc.Driver";
     private static final String CONNECTIONURL = "jdbc:mysql://localhost:3306/GoogleDrive";
     private static final String DBUSER = "root";
     private static final String DBPASSWORD = "root";

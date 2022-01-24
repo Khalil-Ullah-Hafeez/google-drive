@@ -6,8 +6,7 @@ import drive.Beans.UserBean;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
-public class DownloadFile extends HttpServlet {
-
+public class DeleteFile extends HttpServlet {
     /** 
      * Process the Download GET request
      * @param req
@@ -33,8 +32,9 @@ public class DownloadFile extends HttpServlet {
         
 
         String complete_path = getServletContext().getRealPath("/data/" + email + "/" + filename);
-
-        if ( !(new File( complete_path )).exists() ) {
+        File file = new File( complete_path );
+        
+        if ( !file.exists() ) {
             res.setStatus( 404 );
             PrintWriter out = res.getWriter();
             out.print( "Files do not exist" );
@@ -42,29 +42,7 @@ public class DownloadFile extends HttpServlet {
             return;
         }
 
-        String path = "/data/" + email + "/" + filename;
+        file.delete();
 
-        res.setContentType( getServletContext().getMimeType( path ) );
-        res.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");
-
-        InputStream instream = null;
-        OutputStream outstream = null;
-        try {
-            instream = getServletContext().getResourceAsStream( path );
-            outstream = res.getOutputStream();
-
-            byte[] buffer = new byte[1024];
-        
-            int numBytesRead;
-            while ((numBytesRead = instream.read(buffer)) > 0) {
-                outstream.write(buffer, 0, numBytesRead);
-            }
-        } finally {
-            if (instream != null)
-                instream.close();
-
-            if (outstream != null)
-                outstream.close();
-        }
     }
 }

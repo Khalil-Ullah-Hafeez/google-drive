@@ -3,6 +3,8 @@ package drive.file;
 import java.io.*;
 import java.util.Collection;
 
+import drive.Beans.UserBean;
+
 // import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 // import org.apache.commons.fileupload.servlet.*;
 
@@ -31,7 +33,7 @@ public class FileUpload extends HttpServlet {
             return;
         }
 
-        String email = (String) session.getAttribute( "email" );
+        String email = ( (UserBean) session.getAttribute( "user" ) ).getEmail();
 
         
 
@@ -44,7 +46,19 @@ public class FileUpload extends HttpServlet {
             final Collection<Part> parts = req.getParts();
             
             for (final Part part : parts) {
-                part.write(path + part.getSubmittedFileName() );
+                if ( part.getSubmittedFileName() == null ) {
+                    out.print("The file has been uploaded successfully.");
+                    return;
+                }
+                String file_path = path + part.getSubmittedFileName();
+
+                if ( (new File( file_path )).exists() ) {
+                    res.setStatus( 409 );
+                    out.print("File already exists.");
+                    return;
+                }
+
+                part.write( file_path );
             }
 
             out.print("The file has been uploaded successfully.");

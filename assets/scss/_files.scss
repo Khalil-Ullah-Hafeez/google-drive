@@ -8,7 +8,7 @@
 .single-file {
     background-color: #fff;
     
-    width: 25%;
+    width: 22.7%;
     text-align: center;    
     margin: 10px;
     
@@ -22,12 +22,13 @@
     }
 
     i {
-        font-size: 40px;
+        font-size: 50px;
     }
 
     h4 {
         margin-top: 10px;
         font-size: 15px;
+        word-break: break-all;
     }
 
     .anchor-wrapper{
@@ -45,13 +46,17 @@
             cursor: pointer;
         }
 
-        .download {
-            background-color: blue;
+        .btn {
+            border-radius: 0;
         }
 
-        .delete {
-            background-color: red;
-        }
+        // .download {
+        //     background-color: blue;
+        // }
+
+        // .delete {
+        //     background-color: red;
+        // }
     }
 }
 

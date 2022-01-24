@@ -1,10 +1,15 @@
-package drive.error;
+package drive.Beans;
 
-public class FieldError {
+public class FieldErrorBean {
     private String name;
     private String message;
 
-    public FieldError(String name, String message) {
+    public FieldErrorBean() {
+        this.name = "";
+        this.message = "";
+    }
+
+    public FieldErrorBean(String name, String message) {
         this.name = name;
         this.message = message;
     }
@@ -24,4 +29,6 @@ public class FieldError {
     public void setMessage(String message) {
         this.message = message;
     }
+
+
 }
