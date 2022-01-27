@@ -9,8 +9,10 @@ import drive.Beans.UserBean;
 // import org.apache.commons.fileupload.servlet.*;
 
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
 
+@MultipartConfig
 public class FileUpload extends HttpServlet {
     
     
