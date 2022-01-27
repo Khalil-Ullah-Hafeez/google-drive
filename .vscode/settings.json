@@ -1,12 +1,23 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "e:\\Work\\JAVA\\apache-tomcat-10.0.14\\lib\\servlet-api.jar",
-        "e:\\Work\\JAVA\\libraries\\commons-validator-1.7.jar",
-        "e:\\Work\\JAVA\\libraries\\commons-dbcp2-2.9.0.jar",
-        "e:\\Work\\JAVA\\libraries\\commons-pool2-2.11.1.jar",
-        "e:\\Work\\JAVA\\libraries\\javax.mail.jar",
-        "e:\\Work\\JAVA\\libraries\\gson-2.8.9.jar",
-        "e:\\Work\\JAVA\\libraries\\commons-fileupload-1.4.jar"
-    ]
+  "search.exclude": {
+    "**/.sst": true
+  },
+  "task.allowAutomaticTasks": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "debug.openDebug": "neverOpen",
+  "problems.autoReveal": true,
+  "terminal.integrated.hideOnStartup": "always",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.inheritEnv": false,
+  "jestrunner.configPath": "jest.unit.config.cjs",
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "tasks": {
+    "label": "lint on open",
+    "type": "shell",
+    "command": "npm run lint",
+    "runOn": "folderOpen"
+  }
 }

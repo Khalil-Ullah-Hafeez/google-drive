@@ -7,8 +7,10 @@ import drive.Beans.UserBean;
 import drive.database.UserDAO;
 import drive.verification.VerificationDriver;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
 
+@MultipartConfig
 public class Login extends HttpServlet {
     
     
